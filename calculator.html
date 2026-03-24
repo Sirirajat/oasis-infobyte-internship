@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculator</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #121212; color: #eee; display: flex; justify-content: center; padding: 2rem; }
+  .calculator {
+    background: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 300px;
+  }
+  input {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  button {
+    padding: 1rem;
+    font-size: 1.2rem;
+    background: #1db954;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button.operator {
+    background: #ff6f61;
+  }
+</style>
+</head>
+<body>
+<div class="calculator">
+  <input type="text" id="display" disabled />
+  <div class="buttons">
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button class="operator" onclick="press('/')">÷</button>
+
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button class="operator" onclick="press('*')">x</button>
+
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button class="operator" onclick="press('-')">-</button>
+
+    <button onclick="press('0')">0</button>
+    <button onclick="press('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button class="operator" onclick="press('+')">+</button>
+
+    <button style="grid-column: span 4;" onclick="clearDisplay()">Clear</button>
+  </div>
+</div>
+
+<script>
+  const display = document.getElementById('display');
+
+  function press(value) {
+    display.value += value;
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value);
+    } catch {
+      display.value = 'Error';
+    }
+  }
+
+  function clearDisplay() {
+    display.value = '';
+  }
+</script>
+</body>
+</html>
